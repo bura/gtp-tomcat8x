@@ -1,0 +1,54 @@
+apply plugin: 'groovy'
+apply plugin: 'eclipse'
+apply plugin: 'war'
+apply plugin: 'tomcat'
+
+buildDir = 'target'
+
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+repositories {  mavenCentral() }
+
+ext {
+    tomcatStopPort = 8081
+    tomcatStopKey = 'stopKey'
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+
+    // tomcat 8
+    def tomcatVersion = '8.0.0-RC10'
+
+    compile "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
+
+    tomcat("org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}")
+    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
+}
+
+[
+    tomcatRun,
+    tomcatRunWar,
+    tomcatStop
+]*.stopKey = tomcatStopKey
+
+[
+    tomcatRun,
+    tomcatRunWar,
+    tomcatStop
+]*.stopPort = tomcatStopPort
+
+buildscript {
+    repositories {  mavenLocal()  }
+
+    dependencies {  classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'  }
+
+    //  repositories { jcenter() }
+    //
+    //  dependencies { classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0' }
+}
