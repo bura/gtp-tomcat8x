@@ -22,7 +22,7 @@ dependencies {
     // tomcat 8
     def tomcatVersion = '8.0.3'
 
-    compile "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
+    providedCompile "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
 
     tomcat("org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}")
