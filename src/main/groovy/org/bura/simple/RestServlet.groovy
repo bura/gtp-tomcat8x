@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServlet
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-@WebServlet(value = RestServlet.API_PREFIX, loadOnStartup = 1)
+@WebServlet(value = RestServlet.API_FILTER, loadOnStartup = 1)
 class RestServlet extends HttpServlet {
-    public static final String API_PREFIX = '/'
-    public static final String USERS_PATH = API_PREFIX + 'users'
-    public static final String USER_PATH = API_PREFIX + 'user/'
+    public static final String API_FILTER = '/api/*'
+    public static final String USERS_PATH = '/users'
+    public static final String USER_PATH = '/user/'
     
     private static final String INVALID_ID = 'error.invalidUserId'
     private static final String NOT_FOUND = 'error.notFound'
@@ -31,10 +31,10 @@ class RestServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String body
-            if (req.servletPath == USERS_PATH) {
+            if (req.pathInfo == USERS_PATH) {
                 body = controller.users()
-            } else if (req.servletPath.startsWith(USER_PATH)) {
-                String strId = req.servletPath.substring(USER_PATH.length())
+            } else if (req.pathInfo.startsWith(USER_PATH)) {
+                String strId = req.pathInfo.substring(USER_PATH.length())
                 long id
                 try {
                     id = Long.parseLong(strId)

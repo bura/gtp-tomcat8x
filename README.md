@@ -1,4 +1,4 @@
-Application contains classes, properties file and third party library.
+Application contains html page, classes, properties file and third party library.
 
 Start application
 ---
@@ -8,5 +8,6 @@ Start application
 Application routes
 ---
 
-	/users - Information about all users in JSON format
-	/user/{userId} - Information about user with specified Id in JSON format
+	/index.html - Simple html page (webapp);
+	/api/users - Information about all users in JSON format (servlet);
+	/api/user/{userId} - Information about user with specified Id in JSON format (servlet).
