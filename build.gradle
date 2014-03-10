@@ -44,11 +44,9 @@ dependencies {
 ]*.stopPort = tomcatStopPort
 
 buildscript {
-    repositories {  mavenLocal()  }
+    repositories { mavenLocal() }
 
-    dependencies {  classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'  }
+    dependencies { classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.2' }
 
     //  repositories { jcenter() }
-    //
-    //  dependencies { classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0' }
 }

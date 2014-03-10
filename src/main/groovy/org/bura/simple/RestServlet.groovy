@@ -11,7 +11,7 @@ class RestServlet extends HttpServlet {
     public static final String API_FILTER = '/api/*'
     public static final String USERS_PATH = '/users'
     public static final String USER_PATH = '/user/'
-    
+
     private static final String INVALID_ID = 'error.invalidUserId'
     private static final String NOT_FOUND = 'error.notFound'
     private static final String INTERNAL_ERROR = 'error.internal'
