@@ -8,22 +8,29 @@ buildDir = 'target'
 sourceCompatibility = '1.7'
 targetCompatibility = '1.7'
 
-repositories {  mavenCentral() }
+repositories {
+    mavenCentral()
+}
 
 ext {
+    slf4jVersion= '1.+'
+    logbackVersion = '1.+'
+    tomcatVersion = '8.0.5'
     tomcatStopPort = 8081
     tomcatStopKey = 'stopKey'
 }
 
 dependencies {
-    compile 'org.codehaus.groovy:groovy-all:2.2.1'
+    compile "org.slf4j:slf4j-api:${slf4jVersion}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4jVersion}"
+    compile "org.slf4j:log4j-over-slf4j:${slf4jVersion}"
+    compile "ch.qos.logback:logback-core:${logbackVersion}"
+    compile "ch.qos.logback:logback-classic:${logbackVersion}"
+    
+    compile 'org.springframework:spring-webmvc:4.0.3.RELEASE'
+    compile 'org.codehaus.groovy:groovy-all:2.2.2'
+    
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
-
-    // tomcat 8
-    def tomcatVersion = '8.0.3'
-
-    providedCompile "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}"
-
     tomcat("org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
             "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}")
     tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
