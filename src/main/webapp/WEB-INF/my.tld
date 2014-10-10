@@ -1,0 +1,10 @@
+<taglib>
+  <tlib-version>1.0</tlib-version>
+  <jsp-version>2.3</jsp-version>
+  <short-name>My Tag TLD</short-name>
+  <tag>
+    <name>MyTag</name>
+    <tag-class>org.bura.simple.jsp.MyTag</tag-class>
+    <body-content>empty</body-content>
+  </tag>
+</taglib>
